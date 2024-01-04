@@ -7,10 +7,10 @@ const scoreDisplay = document.querySelector('.score');
 const highScoreDisplay = document.querySelector('.highscore');
 const checkButton = document.querySelector('.check');
 let message = document.querySelector('.message');
-let guess = document.querySelector('.guess').value;
+let guess = document.querySelector('.guess');
 
 
-let numberGuess = Math.floor(Math.random() * 20);
+let numberGuess = Math.floor(Math.random() * 20) + 1;
 console.log(numberGuess);
 console.log(message);
 console.log(guess);
@@ -29,7 +29,7 @@ checkButton.addEventListener("click", () => {
         console.log(message.textContent);
     } else if (guess == numberGuess) {
         message.textContent = 'Congrats! You win!';
-        numberDisplay = guess;
+        numberDisplay.textContent = guess;
         CheckHighScore(highScore, score);
 
         document.querySelector('body').style.backgroundColor = '#60b247';
@@ -51,10 +51,14 @@ againButton.addEventListener("click", () => {
     score = 20;
     DisplayScore(score);
     console.log('score is', score);
-    guess.textContent = 0;
-    numberDisplay = '?';
+    guess.value = 0;
+    numberDisplay.textContent = '?';
     console.log('guess is', guess);
     console.log('numberDisplay is', numberDisplay);
+
+    document.querySelector('body').style.backgroundColor = '#222';
+    document.querySelector('.number').style.width = '15rem';
+    let numberGuess = Math.floor(Math.random() * 20) + 1;
 });
 
 function CheckHighScore (highScore, score) {
