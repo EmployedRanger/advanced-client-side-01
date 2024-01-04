@@ -1,15 +1,13 @@
 'use strict';
-let highScore = 0;
-let score = 20;
 const againButton = document.querySelector('.again');
-let numberDisplay = document.querySelector('.number');
 const scoreDisplay = document.querySelector('.score');
 const highScoreDisplay = document.querySelector('.highscore');
 const checkButton = document.querySelector('.check');
+let highScore = 0;
+let score = 20;
+let numberDisplay = document.querySelector('.number');
 let message = document.querySelector('.message');
 let guess = document.querySelector('.guess');
-
-
 let numberGuess = Math.floor(Math.random() * 20) + 1;
 console.log(numberGuess);
 
