@@ -12,12 +12,9 @@ let guess = document.querySelector('.guess');
 
 let numberGuess = Math.floor(Math.random() * 20) + 1;
 console.log(numberGuess);
-console.log(message);
-console.log(guess);
 
 checkButton.addEventListener("click", () => {
     let guess = document.querySelector('.guess').value;
-    // numberDisplay.textContent = guess;
     if (score < 0) {
         message.textContent = 'You lose';
         score = 0;
@@ -26,7 +23,6 @@ checkButton.addEventListener("click", () => {
 
     if (guess > 20 || guess <= 0) {
         message.textContent = 'Needs to be between 1-20';
-        console.log(message.textContent);
     } else if (guess == numberGuess) {
         message.textContent = 'Congrats! You win!';
         numberDisplay.textContent = guess;
@@ -47,28 +43,22 @@ checkButton.addEventListener("click", () => {
 });
 
 againButton.addEventListener("click", () => {
-    console.log('againButton ran')
     score = 20;
     DisplayScore(score);
-    console.log('score is', score);
     guess.value = 0;
     numberDisplay.textContent = '?';
-    console.log('guess is', guess);
-    console.log('numberDisplay is', numberDisplay);
 
     document.querySelector('body').style.backgroundColor = '#222';
     document.querySelector('.number').style.width = '15rem';
-    let numberGuess = Math.floor(Math.random() * 20) + 1;
+    numberGuess = Math.floor(Math.random() * 20) + 1;
 });
 
 function CheckHighScore (highScore, score) {
-    console.log('CheckHighScore ran');
     if (score > highScore) {
         highScore = score;
     } else {
         score = highScore;
     }
-    console.log('score is', score)
     highScoreDisplay.textContent = score;
 } 
 
