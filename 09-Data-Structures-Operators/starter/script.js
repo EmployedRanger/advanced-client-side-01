@@ -174,3 +174,55 @@ for (const [team, odd] of Object.entries(game.odds)) {
   console.log(`Odd of ${teamString}: ${odd}`);
 }
 
+// #2.4 bonus
+const scorers = {};
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+  console.log(scorers);
+}
+
+console.log('------------ NUMBER 4 ------------');
+
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+// #1
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+gameEvents.delete(64);
+console.log(gameEvents);
+
+let gameTime = 90;
+let frequency = gameTime / gameEvents.size;
+console.log(frequency);
+console.log(`An event happened, on average, every ${frequency} minutes`);
+
+gameTime = 92;
+frequency = gameTime / gameEvents.size;
+console.log(`An event happened, on average, every ${frequency} minutes`);
+
+for (const [minutes, event] of gameEvents) {
+  if (minutes <= 45) {
+    console.log(`[FIRST HALF] ${minutes}: ${event}`);
+  } else {
+    console.log(`[SECOND HALF] ${minutes}: ${event}`);
+  }
+}
+
+console.log('----- OR -----');
+for (const [min, event] of gameEvents) {
+  const half = min <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${min}: ${event}`);
+}
