@@ -138,3 +138,28 @@ printGoals('malmstrom', 'nerd')
 // #1.7
 team1 < team2 && console.log('team1 is more likely to win')
 team2 < team1 && console.log('team2 is more likely to win')
+
+
+// #2
+for (const [i, player] of game.scored.entries()) {
+  console.log(`Goal ${i + 1}: ${player}`)
+}
+
+// My old attempt at not using what we just learned. Doesn't work 
+// let numberScored = 0;
+// for (let i = 0; i < game.scored.length; i++) {
+//   const player = game.scored[i];
+//   game.scored.forEach(player => {
+  
+//     console.log(`Goal ${numberScored + 1}: ${player}`)
+//     return numberScored;
+//   });
+// }
+
+// #2.2
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of game.odds.entries()) {
+  odd.value += totalValue;
+  console.log(totalValue) 
+}
