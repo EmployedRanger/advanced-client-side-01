@@ -157,9 +157,20 @@ for (const [i, player] of game.scored.entries()) {
 // }
 
 // #2.2
-const odds = Object.values(game.odds);
+const oddsVal = Object.values(game.odds);
 let average = 0;
-for (const odd of odds) average += odd;
-average /= odds.length;
+for (const odd of oddsVal) average += odd;
+average /= oddsVal.length;
 console.log(average) 
+
+// #2.3
+// NEEDS TO PRINT 
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamString = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamString}: ${odd}`);
+}
 
