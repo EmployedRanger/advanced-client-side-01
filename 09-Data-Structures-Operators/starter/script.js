@@ -269,7 +269,24 @@ document.body.append(document.createElement('button'));
 let buttonEl = document.querySelector('button');
 buttonEl.addEventListener('click', () => {
   const userText = document.querySelector('textarea').value;
+  const rows = userText.split('\n');
+  console.log(rows);
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
 
 
-  console.log(userText)
+    // let newRow = '';
+    // newRow = row.split('_').map(word => word[0].toUpperCase + word.slice(1)).join(' ');
+    // newRow = row.split('_');
+    // newRow = row.split('_').map(([firstLetter, ...otherLetters ]) => `${firstLetter.toUpperCase()}${otherLetters.join("")}`).join('');
+    // console.log(newRow, '✅');
+  }
+  
+  console.log(userText, '✅')
 });
