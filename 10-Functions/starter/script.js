@@ -73,3 +73,28 @@ const bookEW23 = book.bind(eurowings, 238);
 bookEW23('Logan Malmstrom');
 bookEW23('Martha Cooper');
 console.log(eurowings);
+
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+    console.log(this); // <button class="buy">Buy new plane 🛩</button>
+    this.planes++;
+    console.log('this.planes:', this.planes); // quantity of planes
+}
+
+document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// Partial application
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+// Using bind really gives us a new function, adding from a more general function
+
+const addVAT = addTax.bind(null, 0.23);
+// Now addVAT is this:
+// addVAT = value => value + value * 0.23;
+
+console.log(addVAT(100));
+console.log(addVAT(23));
+
