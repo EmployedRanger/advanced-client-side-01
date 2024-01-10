@@ -51,10 +51,25 @@ console.log(lufthansa);
 book.call(swiss, 543, 'Senya Ranger');
 console.log(swiss);
 
-// Apply method
 const flightData = [243, 'Jorge Cooper']
-book.apply(swiss, flightData);
-console.log(swiss)
+// Apply method
+// book.apply(swiss, flightData);
 
 // Better method, use 'call()'
 book.call(swiss, ...flightData);
+console.log(swiss)
+
+// Bind method
+// book.call(eurowings, 238, 'Sarah Williams');
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(238, 'Steven Williams');
+console.log(eurowings);
+
+const bookEW23 = book.bind(eurowings, 238);
+bookEW23('Logan Malmstrom');
+bookEW23('Martha Cooper');
+console.log(eurowings);
