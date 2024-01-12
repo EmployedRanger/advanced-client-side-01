@@ -118,8 +118,16 @@ let dogsJulia = [[3, 5, 2, 12, 7], [9, 16, 6, 8, 3]];
 let dogsKate = [[4, 1, 15, 8, 3], [10, 5, 6, 1, 4]];
 
 const checkDogs = function (dogsJulia, dogsKate) {
+  let dogsJuliaCopy = dogsJulia[0];
+  dogsJuliaCopy = dogsJuliaCopy.slice(1).slice(-2);
+  console.log(dogsJuliaCopy);
+  
 
-  console.log(`Dog number ${dog} `);
+
+  // console.log(`Dog number ${dog} `);
+  console.log('dogsJulia:', dogsJulia);
+  console.log(`dogsJulia:`, dogsKate);
 }
 
 checkDogs(dogsJulia, dogsKate);
+// checkDogs(dogsJulia[1], dogsKate[1]);
