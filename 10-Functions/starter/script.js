@@ -195,9 +195,9 @@
 // GOOD LUCK 😀
 // */`
 
-// (function () {
-//     const header = document.querySelector('h1');
-//     header.style.color = 'red';
-// })();
+(function () {
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+})();
 
 
