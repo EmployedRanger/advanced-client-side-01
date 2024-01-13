@@ -117,17 +117,54 @@ GOOD LUCK 😀
 let dogsJulia = [[3, 5, 2, 12, 7], [9, 16, 6, 8, 3]];
 let dogsKate = [[4, 1, 15, 8, 3], [10, 5, 6, 1, 4]];
 
-const checkDogs = function (dogsJulia, dogsKate) {
-  let dogsJuliaCopy = dogsJulia[0];
-  dogsJuliaCopy = dogsJuliaCopy.slice(1).slice(-2);
-  console.log(dogsJuliaCopy);
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   let dogsJuliaCopy = dogsJulia[0];
+//   dogsJuliaCopy = dogsJuliaCopy.slice(1, 3);
+//   console.log(dogsJuliaCopy);
+//   dogsJuliaCopy = [dogsJuliaCopy, dogsJulia[1]];
   
+//   let firstSet = [...dogsJuliaCopy[0], ...dogsKate[0]];
+//   let secondSet = [...dogsJuliaCopy[1], ...dogsKate[1]];
+//   console.log('firstSet:', firstSet);
+//   firstSet.forEach(dog => {
+//     ageCheck(dog);
+//   });
+
+//   secondSet.forEach(dog => {
+//     ageCheck(dog, i);
+//   });
+
+//   function ageCheck (dog, i) {
+//     let answer = '';
+//     if (dog >= 3) {
+//       answer = 'adult';
+//     } else {
+//        answer = 'puppy';
+//     }
+//     console.log(`Dog number ${firstSet[i + 1]} is an ${answer}, and is ${dog} years old`);
+//   }
 
 
-  // console.log(`Dog number ${dog} `);
-  console.log('dogsJulia:', dogsJulia);
-  console.log(`dogsJulia:`, dogsKate);
+//   // console.log(`Dog number ${dog} `);
+//   console.log('dogsJulia:', dogsJuliaCopy);
+//   console.log(`dogsJulia:`, dogsKate);
+// }
+
+// checkDogs(dogsJulia, dogsKate);
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const dogsJuliaCorrected = dogsJulia.slice(2, 3);
+  const allDogs = dogsJuliaCorrected.concat(dogsKate);
+  console.log(dogsJuliaCorrected);
+  console.log(allDogs);
+  allDogs.forEach(function (dog, i) {
+    if (dog >= 3) {
+      console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`);
+    } else {
+      console.log(`Dog number ${i + 1} is still a puppy`);
+    }
+  });
 }
 
-checkDogs(dogsJulia, dogsKate);
-// checkDogs(dogsJulia[1], dogsKate[1]);
+checkDogs(dogsJulia[0], dogsKate[0]);
+checkDogs(dogsJulia[1], dogsKate[1]);
