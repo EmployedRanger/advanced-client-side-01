@@ -80,6 +80,12 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+
+const calcPrintBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+}
+
 const createUsernames = function (accounts) {
   accounts.forEach(function(account) {
     account.username = account.owner
@@ -92,6 +98,7 @@ const createUsernames = function (accounts) {
 
 createUsernames(accounts);
 console.log(accounts);
+calcPrintBalance(accounts);
 
 
 
@@ -185,6 +192,32 @@ let dogsKate = [[4, 1, 15, 8, 3], [10, 5, 6, 1, 4]];
 // checkDogs(dogsJulia[1], dogsKate[1]);
 
 
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
+
+Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
+
+1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4.
+2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
+3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
+4. Run the function for both test datasets
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+*/
+const testData1 = [5, 2, 4, 1, 15, 8, 3];
+const testData2 = [16, 6, 10, 5, 6, 1, 4];
+
+
+const calcAverageHumanAge = function (ages) {
+  
+}
+
 // ---------- NEXT ----------
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -211,6 +244,30 @@ const deposits = movements.filter(function (mov) {
 });
 
 const withdrawals = movements.filter(mov => mov < 0);
-console.log(movements);
-console.log(deposits);
-console.log(withdrawals);
+// console.log(movements);
+// console.log(deposits);
+// console.log(withdrawals);
+
+// accumulator -> snowball
+// const balance = movements.reduce(function(acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+
+// Best way to do this. It's the above method, but shorter
+// const balance = movements.reduce((acc, cur) => acc + cur, 0);
+// console.log(balance);
+
+// For loop can work, but isn't best option
+// let balance2 = 0;
+// for (const mov of movements) balance += mov;
+// console.log(balance2);
+
+// Returns Maximum value from array
+const max = movements.reduce((acc, mov) => {
+  // acc keeps track of max value
+  if (acc > mov) {
+    return acc;
+  } else return mov;
+}, movements[0]);
+console.log(max);
