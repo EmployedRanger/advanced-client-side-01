@@ -215,8 +215,23 @@ const testData2 = [16, 6, 10, 5, 6, 1, 4];
 
 
 const calcAverageHumanAge = function (ages) {
-  
+  const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4));
+  const adults = humanAges.filter(age => age >= 18);
+  console.log(humanAges);
+  console.log(adults);
+
+  const totalAges = adults.reduce((acc, age) => acc + age, 0);
+
+
+  const length = adults.length;
+  console.log('length', length);
+  const aveAge = totalAges / length;
+
+  console.log(`The average dog age in human years is ${aveAge}`);
 }
+const avg1 = calcAverageHumanAge(testData1);
+const avg2 = calcAverageHumanAge(testData2);
+console.log(avg1, avg2);
 
 // ---------- NEXT ----------
 
