@@ -153,7 +153,7 @@ btnLogin.addEventListener('click', function (e) {
     containerApp.style.opacity = 100;
 
     // Clear input fields
-    inputLoginUsername.value = inputClosePin.value = '';
+    inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
     updateUI(currentAccount);
@@ -174,11 +174,38 @@ btnTransfer.addEventListener('click', function (e) {
       currentAccount.movements.push(-amount);
       receiverAcc.movements.push(amount);
       updateUI(currentAccount);
-      inputTransferTo.value = '';
-      inputTransferAmount.value = '';
+      inputTransferTo.value = inputTransferAmount.value = '';
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.value);
+
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add a movement
+    currentAccount.movements.push(amount);
+
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = '';
+});
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  
+  if (inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(acc => acc.username === currentAccount.username);
+
+    accounts.splice(index, 1);
+
+    // Hides UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+});
 
 
 
@@ -366,12 +393,67 @@ const max = movements.reduce((acc, mov) => {
 
 
 // PIPELINE
-const totalDepositsUSD = movements
-  .filter(mov => mov < 0)
-  // .map(mov => mov * eurToUsd)
-  .map((mov, i, arr) => {
-    // console.log(arr);
-    return mov * eurToUsd;
-  })
-  .reduce((acc, mov) => acc + mov, 0);
-console.log(totalDepositsUSD);
+// const totalDepositsUSD = movements
+//   .filter(mov => mov < 0)
+//   // .map(mov => mov * eurToUsd)
+//   .map((mov, i, arr) => {
+//     // console.log(arr);
+//     return mov * eurToUsd;
+//   })
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(totalDepositsUSD);
+
+// // flat and flatMap
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
+
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
+
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
+// const overAllBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overAllBalance);
+
+// // flat
+// const overalBalance = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overalBalance);
+
+// // flatMap
+// const overalBalance2 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overalBalance2);
+
+console.log(movements);
+// [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+// 'a' is first value, 'b' is next value
+// return < 0, A, B
+// return > 0, B, A
+
+// Ascending order
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (b > a) return -1;
+});
+console.log(movements);
+//[-650, -400, -130, 70, 200, 450, 1300, 3000]
+
+// Descending
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (b > a) return 1;
+});
+console.log(movements);
+// [3000, 1300, 450, 200, 70, -130, -400, -650]
+
+// Short version of ascending, switch a and b for descending
+movements.sort((a, b) => a - b);
+console.log(movements);
+
