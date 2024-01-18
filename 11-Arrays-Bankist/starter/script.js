@@ -64,6 +64,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
+  // Slice here creates a new array from the original data
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
 
   movs.forEach(function (mov, i) {
@@ -430,7 +431,7 @@ const max = movements.reduce((acc, mov) => {
 //   .reduce((acc, mov) => acc + mov, 0);
 // console.log(overalBalance2);
 
-console.log(movements);
+// console.log(movements);
 // [200, 450, -400, 3000, -650, -130, 70, 1300]
 
 // 'a' is first value, 'b' is next value
@@ -438,22 +439,22 @@ console.log(movements);
 // return > 0, B, A
 
 // Ascending order
-movements.sort((a, b) => {
-  if (a > b) return 1;
-  if (b > a) return -1;
-});
-console.log(movements);
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+// });
+// console.log(movements);
 //[-650, -400, -130, 70, 200, 450, 1300, 3000]
 
 // Descending
-movements.sort((a, b) => {
-  if (a > b) return -1;
-  if (b > a) return 1;
-});
-console.log(movements);
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+//   if (b > a) return 1;
+// });
+// console.log(movements);
 // [3000, 1300, 450, 200, 70, -130, -400, -650]
 
 // Short version of ascending, switch a and b for descending
-movements.sort((a, b) => a - b);
-console.log(movements);
+// movements.sort((a, b) => a - b);
+// console.log(movements);
 
