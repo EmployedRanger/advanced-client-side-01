@@ -122,10 +122,22 @@ const createUsernames = function (accounts) {
 }
 
 createUsernames(accounts);
-console.log(accounts);
 calcDisplayBalance(accounts);
 
+let currentAccount;
 
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  if (currentAccount.pin === Number(inputLoginPin.value)) {
+    console.log('LOGIN');
+  }
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
