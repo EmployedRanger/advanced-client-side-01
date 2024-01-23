@@ -530,5 +530,15 @@ dogs.forEach(element => {
   element['recFood'] = recommendedFood;
   
   console.log(element);
-  console.log();
 });
+
+// Sarah's dog
+const sarahDog = function (dogs) {
+  dogs.forEach(dog => {
+    console.log('d');
+    if (dog.owners == 'Sarah') {
+      console.log('et');
+    }
+  });
+}
+sarahDog(dogs);
