@@ -486,4 +486,7 @@ console.log(z); // [ 1, 2, 3, 4, 5, 6, 7 ]
 labelBalance.addEventListener('click', function (e) {
   const movementsUI = Array.from(document.querySelectorAll('.movements__value'), el => Number(el.textContent.replace('€', '')));
   console.log(movementsUI);
+
+  // Method 2 to get array from node list
+  const movementsUI2 = [...document.querySelector('.movements__value')];
 });
