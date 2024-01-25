@@ -599,7 +599,7 @@ dogs.forEach(dog => {
     dogsNotEatingWell.push(dog);
   }
 });
-console.log('dogs eating well', dogsEatingWell);
+console.log('dogs eating well', dogsEatingWell); 
 console.log('dogs not eating well', dogsNotEatingWell);
 
 const dogsCopy = dogs;
