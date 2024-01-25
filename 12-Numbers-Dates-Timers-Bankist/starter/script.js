@@ -155,6 +155,11 @@ const updateUI = function (acc) {
 // Event handlers
 let currentAccount;
 
+// Fake login
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -273,3 +278,17 @@ btnSort.addEventListener('click', function (e) {
 // 287,460,000,000
 const diameter = 287_640_000_000
 console.log(diameter);
+
+const price = 359_99;
+console.log(price);
+
+const transferFee1 = 15_00; // _ can not be a string
+const transferFee2 = 1_500;
+
+const PI = 3.14159 // can only put _ between 2 numbers
+
+// Biggest number JS can handle without bigInt
+console.log(2 ** 53 - 1);
+
+console.log(654654654650674087646806406804060644607n);
+console.log(5640546565465046540654654849846541651561986440654860046806406n ** 2n);
