@@ -179,30 +179,40 @@ const updateUI = function (acc) {
 };
 
 const startLogOutTimer = function () {
-  // set to 5 min
-  let time = 100;
+  const tick = () => {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(Math.trunc(time % 60)).padStart(2, 0);
 
-  // call time every second
-  setInterval(() => {
     // in each call, pring the remaining time to UI
-    labelTimer.textContent = time;
+    labelTimer.textContent = `${min}:${sec}`;
 
-    // Decrease 1s
-    time--;
   
     // When 0 seconds, steop timer and logout user
-
-  }, 1000);
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started`;
+      containerApp.style.opacity = 0;
+    }
+    // Decrease 1s
+    time--;
+  }
+  // set to 5 min
+  let time = 120;
+  
+  // call time every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
 }
 
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
-// Fake login
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// // Fake login
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 // API Practice
 const now = new Date();
@@ -216,12 +226,11 @@ const options = {
 };
 // const locale = navigator.language;
 
-labelDate.textContent = new Intl.DateTimeFormat(currentAccount.locale, options).format(now);
+// labelDate.textContent = new Intl.DateTimeFormat(currentAccount.locale, options).format(now);
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
-
 
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
@@ -247,7 +256,8 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    startLogOutTimer();
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
 
     // Update UI
     updateUI(currentAccount);
