@@ -528,17 +528,83 @@ const dogs = [
 dogs.forEach(element => {
   const recommendedFood = Math.floor(element.weight ** 0.75 * 28);
   element['recFood'] = recommendedFood;
-  
-  console.log(element);
 });
 
 // Sarah's dog
-const sarahDog = function (dogs) {
+let sarahDog = '';
+const findDog = function (dogs) {
   dogs.forEach(dog => {
-    console.log('d');
-    if (dog.owners == 'Sarah') {
-      console.log('et');
-    }
+    if (dog.owners.includes('Sarah')) {
+      return sarahDog = dog;
+    }   
   });
 }
-sarahDog(dogs);
+
+const eatingHabit = function (dog) {
+  if (dog.curFood > dog.recFood) {
+    console.log('Dog is eating too much');
+    return 0;
+  } else if (dog.curFood === dog.recFood) {
+    console.log('Dog is perfect');
+    return 1;
+  } else {
+    console.log('Dog is eating to little');
+    return 2;
+  }
+}
+
+const withinReason = function (dog) {
+  console.log('dog.recFood = ', dog.recFood);
+  console.log('dogCurrFood = ', dog.curFood);
+  if (dog.curFood >= (dog.recFood * 0.9) && dog.curFood <= (dog.recFood * 1.1)) {
+    console.log('Dog is eating well');
+    return 0;
+  } else if (dog.curFood > dog.recFood * 1.1) {
+    console.log('Dog is eating too much');
+    return 1;
+  } else {
+    console.log('Dog is eating to little');
+    return 2;
+  }
+}
+
+findDog(dogs);
+console.log('sarah', sarahDog);
+eatingHabit(sarahDog);
+
+const ownersEatingTooMuch = [];
+const ownersEatingTooLittle = [];
+const dogsEatingWell = [];
+const dogsNotEatingWell = [];
+
+dogs.forEach(dog => {
+  const value = eatingHabit(dog);
+  if (value == 0) {
+    ownersEatingTooMuch.push(...dog.owners);
+  } else {
+    ownersEatingTooLittle.push(...dog.owners);
+  }
+});
+
+// console.log('owners eating too much', ownersEatingTooMuch);
+// console.log('owners eating too little', ownersEatingTooLittle);
+// console.log(ownersEatingTooMuch[0], 'and', ownersEatingTooMuch[1], 'and', ownersEatingTooMuch[2], 'dogs are eating too much');
+// console.log(ownersEatingTooLittle[0], 'and', ownersEatingTooLittle[1], 'and', ownersEatingTooLittle[2], 'dogs are eating too little');
+
+dogs.forEach(dog => {
+  const value = withinReason(dog);
+  if (value == 0) {
+    dogsEatingWell.push(dog)
+  } else {
+    dogsNotEatingWell.push(dog);
+  }
+});
+console.log('dogs eating well', dogsEatingWell);
+console.log('dogs not eating well', dogsNotEatingWell);
+
+const dogsCopy = dogs;
+dogsCopy.sort((a, b) => {
+  if (a.recFood > b.recFood) return 1;
+  if (b.recFood > a.recFood) return -1;
+})
+console.log('dogsCopy', dogsCopy);
