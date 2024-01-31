@@ -131,17 +131,37 @@ const initialCoords = section1.getBoundingClientRect();
 //   else nav.classList.remove('sticky')
 // });
 
-const obsCallback = function (entries, observer) {
-  entries.forEach(entry => {
-    console.log(entry);
-  })
-}
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// }
 
 // Vid 198 "A Better Way" on Udemy course
-const obsOptions = {
-  root: null,
-  threshold: 0.1,
+// const obsOptions = {
+//   root: null,
+//   threshold: 0.1,
+// }
+
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// observer.observe(section1);
+
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+console.log(navHeight);
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
 }
 
-const observer = new IntersectionObserver(obsCallback, obsOptions);
-observer.observe(section1);
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+
+headerObserver.observe(header);
