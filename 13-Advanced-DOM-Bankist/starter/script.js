@@ -230,13 +230,17 @@ const goToSlide = function (slide) {
 }
 goToSlide(0);
 
-btnRight.addEventListener('click', function () {
+// curSlide = 1: -100%, 0%, 100%, 200%
+
+const nextSlide = function () {
   if (curSlide === maxSlide) {
     curSlide = 0;
   } else {
     curSlide++;
   }
-
+  
   goToSlide(curSlide);
-});
-// curSlide = 1: -100%, 0%, 100%, 200%
+}
+
+btnRight.addEventListener('click', nextSlide);
+
