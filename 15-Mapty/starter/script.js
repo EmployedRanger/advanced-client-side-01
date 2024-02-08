@@ -32,7 +32,7 @@ class App {
     _getPosition () {
         // Gets user location
         if (navigator.geolocation)
-            navigator.geolocation.getCurrentPosition(this._loadMap, function () {
+            navigator.geolocation.getCurrentPosition(this._loadMap.bind(this), function () {
         alert('Could not get your position');
         });
     }
