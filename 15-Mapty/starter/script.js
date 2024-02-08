@@ -12,27 +12,32 @@ const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 
 class App {
+    // # is private 
     #map;
     #mapZoomLevel = 13;
     #mapEvent;
     #workouts = [];
 
     constructor () {
-        // Get position of user
-        this.getPosition();
+        // Get location of user
+        this._getPosition();
 
         // Get data from local storage
         this._getLocalStorage();
 
-        // Attach the event handlers
+        // Attach event handlers
 
     }
 
     _getPosition () {
-
+        // Gets user location
+        if (navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(this._loadMap, function () {
+        alert('Could not get your position');
+        });
     }
 
-    _loadMap () {
+    _loadMap (position) {
         const { latitude } = position.coords;
         const { longitude } = position.coords;
         // console.log(`https://www.google.pt/maps/@${latitude},${longitude}`);
@@ -47,7 +52,11 @@ class App {
         }).addTo(this.#map);
     
         // Handling clicks on map
-    
+        this.#map.on('click', function (mapE) {
+            this.#mapEvent = mapE;
+            form.classList.remove('hidden');
+            inputDistance.focus();
+        });
     }
 
     _showForm() {
@@ -59,7 +68,7 @@ class App {
     }
 
     _newWorkout () {
-        
+
     }
 }
 
@@ -87,3 +96,5 @@ inputType.addEventListener('change', function() {
     inputElevation.closest('.form__row').classList.toggle('form__row__hidden');
     inputCadence.closest('.form__row').classList.toggle('form__row__hidden');
 });
+
+const app = new App();
