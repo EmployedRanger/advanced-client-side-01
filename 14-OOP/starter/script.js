@@ -140,6 +140,5 @@ DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
 GOOD LUCK 😀
 */
 
-// This is what I did for challenge 3Car {
-    
-}
+// This is what I did for challenge 3
+
