@@ -10,29 +10,59 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
-let map, mapEvent;
 
-if (navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(function (position) {
+class App {
+    #map;
+    #mapZoomLevel = 13;
+    #mapEvent;
+    #workouts = [];
+
+    constructor () {
+        // Get position of user
+        this.getPosition();
+
+        // Get data from local storage
+        this._getLocalStorage();
+
+        // Attach the event handlers
+
+    }
+
+    _getPosition () {
+
+    }
+
+    _loadMap () {
         const { latitude } = position.coords;
         const { longitude } = position.coords;
+        // console.log(`https://www.google.pt/maps/@${latitude},${longitude}`);
+    
+        const coords = [latitude, longitude];
+    
+        this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
+    
+        L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(this.#map);
+    
+        // Handling clicks on map
+    
+    }
 
-        const coords = [latitude, longitude]
-        const map = L.map('map').setView(coords, 13);
+    _showForm() {
+
+    }
+
+    _toggleElevationField() {
+
+    }
+
+    _newWorkout () {
         
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+    }
+}
 
-        map.on('click', function(mapEvent) {
-            form.classList.remove('hidden');
-            inputDistance.
-
-
-
-    }, function () {
-        alert('Could not get your position');
-});
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
