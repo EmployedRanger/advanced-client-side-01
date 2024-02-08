@@ -11,25 +11,25 @@ DATA CAR 2: 'Mercedes' going at 95 km/h
 GOOD LUCK 😀
 */
 
-const Car = function (make, speed) {
-    this.make = make;
-    this.speed = speed;
-}
+// const Car = function (make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+// }
 
-Car.prototype.accelerate = function () {
-    this.speed += 10;
-    console.log(`${this.make} is going at ${this.speed}`);
-}
+// Car.prototype.accelerate = function () {
+//     this.speed += 10;
+//     console.log(`${this.make} is going at ${this.speed}`);
+// }
 
-Car.prototype.brake = function () {
-    this.speed -= 5;
-    console.log(`${this.make} is going at ${this.speed}`);
-}
+// Car.prototype.brake = function () {
+//     this.speed -= 5;
+//     console.log(`${this.make} is going at ${this.speed}`);
+// }
 
-const bmw = new Car('BMW', 120);
-const ford = new Car('Ford', 100);
+// const bmw = new Car('BMW', 120);
+// const ford = new Car('Ford', 100);
 
-ford.accelerate();
+// ford.accelerate();
 
 ///////////////////////////////////////
 // Coding Challenge #2
@@ -45,4 +45,6 @@ DATA CAR 1: 'Ford' going at 120 km/h
 GOOD LUCK 😀
 */
 
-class 
+class Car {
+    
+}
