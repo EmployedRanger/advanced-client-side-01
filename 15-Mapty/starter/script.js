@@ -41,7 +41,12 @@ class Cycling extends Workout {
     constructor(coords, distance, duration, elevationGain) {
         super(coords, distance, duration);
         this.elevationGain = elevationGain;
+        this.calcSpeed();
+    }
 
+    calcSpeed() {
+        this.speed = this.distance / (this.duration / 60);
+        return this.speed;
     }
 }
 
@@ -57,7 +62,7 @@ class App {
         this._getPosition();
 
         // Get data from local storage
-        this._getLocalStorage();
+        // this._getLocalStorage();
 
         // Attach event handlers
         inputType.addEventListener('change', this._toggleElevationField);
@@ -83,9 +88,9 @@ class App {
         this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
     
         L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-          attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        }).addTo(this.#map);
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          }).addTo(this.#map);
     
         // Handling clicks on map
         this.#map.on('click', function (mapE) {
@@ -104,7 +109,39 @@ class App {
     }
 
     _newWorkout (e) {
+        const validInputs = (...inputs) => 
+        inputs.every(inp => Number.isFinite(inp));
+        const allPositive = (...input) => inputs.every(inp => inp > 0);
+
+
         e.preventDefault();
+
+        // Get data from form
+        const type = inputType.value;
+        const distance = +inputDistance.value;
+        const duration = +inputDuration.value;
+
+        
+        
+        // If workout is running, create running object
+        if(type === 'running') {
+            const cadence = +inputCadence.value;
+
+            // Check is data is valid
+            !validInputs(distance, duration, cadence) || !allPositive(distance, duration, cadence);
+        }
+
+        // Cycling creates cycling workout
+        if (type === 'cycling') {
+            const elevation = +inputElevation.value;
+
+            // Check if data is valid
+            !validInputs(distance, duration, elevation) || !allPositive(distance, duration);
+
+        }
+
+        // 
+
 
         // Clear input fields
         inputDistance.value = inputCadence.value = inputDuration.value = inputElevation.value = '';
@@ -122,8 +159,6 @@ class App {
         })).openPopup();
     }
 }
-
-
 
 
 const app = new App();
