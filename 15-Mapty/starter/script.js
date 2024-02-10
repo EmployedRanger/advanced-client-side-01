@@ -120,9 +120,9 @@ class App {
         const type = inputType.value;
         const distance = +inputDistance.value;
         const duration = +inputDuration.value;
+        const { lat, lng } = this.#mapEvent.latlng;        
+        let workout;
 
-        
-        
         // If workout is running, create running object
         if(type === 'running') {
             const cadence = +inputCadence.value;
@@ -132,6 +132,9 @@ class App {
                 !validInputs(distance, duration, cadence) ||
                 !allPositive(distance, duration, cadence)
             ) return alert('Inputs have to be positive numbers')
+
+            const workout = new Running([lat, lng], distance, duration, cadence);
+
         }
 
         // Cycling creates cycling workout
@@ -141,27 +144,37 @@ class App {
             // Check if data is valid
             if (
             !validInputs(distance, duration, elevation) || !allPositive(distance, duration)
-            ) return alert('Inputs have to be positive numbers')
+            ) return alert('Inputs have to be positive numbers');
 
+            const workout = new Cycling([lat, lng], distance, duration, elevation);
         }
 
-        // 
+        // Add new object to workout array
+        this.#workouts.push(workout);
 
+        // Render workout on map as marker
+        this.renderWorkoutMarker(workout);
+
+        // Render workouts on list
 
         // Clear input fields
         inputDistance.value = inputCadence.value = inputDuration.value = inputElevation.value = '';
-    
-        console.log(mapEvent);
-        const { lat, lng } = this.#mapEvent.latlng;
+     
+    }
+
+    renderWorkoutMarker (workout) {
         L.marker([lat, lng]).addTo(this.#map)
         .bindPopup('A pretty CSS popup.<br> Easily customizable.')
         .openPopup(L.popup({
-            maxWidth: 200,
-            minWdith: 100,
+            maxWidth: 250,
+            minWidth: 100,
             autoClose: false,
             closeOnClick: false,
-            className: 'running-popup',
-        })).openPopup();
+            className: `${type}-popup`,
+        })
+        )
+        .setPopupContent(workout.distance)
+        .openPopup();
     }
 }
 
