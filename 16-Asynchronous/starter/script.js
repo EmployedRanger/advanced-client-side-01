@@ -121,11 +121,13 @@ console.log(request);
 
 
 const lotteryPromise = new Promise(function(resolve, reject) {
-    if(Math.random() >= 0.5) {
-        resolve('yeeter');
-    } else {
-        reject('weeper');
-    }
+    setTimeout(() => {
+        if(Math.random() >= 0.5) {
+            resolve('yeeter');
+        } else {
+            reject(new Error('weeper'));
+        }
+    }, 2000);
 });
 // prints promise to console
 lotteryPromise.then(res => console.log(res)).catch(err => console.log(err))
