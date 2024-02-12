@@ -132,7 +132,7 @@ setTimeout(() => {
 // Throwing Errors Manually
 
 // const getCountryData = function (country) {
-//   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+//   fetch(`https://countries-api-836d.onrender.com/countries/name/${country}`)
 //     .then(function (response) {
 //       console.log(response);
 //       return response.json();
@@ -145,7 +145,7 @@ setTimeout(() => {
 
 // const getCountryData = function (country) {
 //   // Country 1
-//   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+//   fetch(`https://countries-api-836d.onrender.com/countries/name/${country}`)
 //     .then(response => {
 //       console.log(response);
 
@@ -162,7 +162,7 @@ setTimeout(() => {
 //       if (!neighbour) return;
 
 //       // Country 2
-//       return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+//       return fetch(`https://countries-api-836d.onrender.com/countries/v2/alpha/${neighbour}`);
 //     })
 //     .then(response => {
 //       if (!response.ok)
@@ -183,7 +183,7 @@ setTimeout(() => {
 const getCountryData = function (country) {
   // Country 1
   getJSON(
-    `https://restcountries.eu/rest/v2/name/${country}`,
+    `https://countries-api-836d.onrender.com/countries/v2/name/${country}`,
     'Country not found'
   )
     .then(data => {
@@ -194,7 +194,7 @@ const getCountryData = function (country) {
 
       // Country 2
       return getJSON(
-        `https://restcountries.eu/rest/v2/alpha/${neighbour}`,
+        `https://countries-api-836d.onrender.com/countries/v2/alpha/${neighbour}`,
         'Country not found'
       );
     })
