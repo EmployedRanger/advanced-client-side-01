@@ -127,3 +127,5 @@ const lotteryPromise = new Promise(function(resolve, reject) {
         reject('weeper');
     }
 });
+// prints promise to console
+lotteryPromise.then(res => console.log(res)).catch(err => console.log(err))
