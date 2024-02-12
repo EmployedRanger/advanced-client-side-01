@@ -68,3 +68,62 @@ const getCountryAndNeighbor = function (country) {
 const request = fetch('https://countries-api-836d.onrender.com/countries/usa');
 
 console.log(request);
+
+
+// const getCountryData = function (country) {
+//   fetch(`https://countries-api-836d.onrender.com/countries/name/${country}`)
+//     .then(function (response) {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       renderCountry(data[0]);
+//     });
+// };
+
+// const getCountryData = function (country) {
+//   // Country 1
+//   fetch(`https://countries-api-836d.onrender.com/countries/name/${country}`)
+//     .then(response => {
+//       console.log(response);
+
+//       if (!response.ok)
+//         throw new Error(`Country not found (${response.status})`);
+
+//       return response.json();
+//     })
+//     .then(data => {
+//       renderCountry(data[0]);
+//       // const neighbor = data[0].borders[0];
+//       const neighbor = 'ugiycthgxfr';
+
+//       if (!neighbor) return;
+
+//       // Country 2
+//       return fetch(`https://countries-api-836d.onrender.com/countries/v2/alpha/${neighbor}`);
+//     })
+//     .then(response => {
+//       if (!response.ok)
+//         throw new Error(`Country not found (${response.status})`);
+
+//       return response.json();
+//     })
+//     .then(data => renderCountry(data, 'neighbor'))
+//     .catch(err => {
+//       console.error(`${err} `);
+//       renderError(`Something went wrong  ${err.message}. Try again!`);
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
+
+
+const lotteryPromise = new Promise(function(resolve, reject) {
+    if(Math.random() >= 0.5) {
+        resolve('yeeter');
+    } else {
+        reject('weeper');
+    }
+});
