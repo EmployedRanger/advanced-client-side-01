@@ -32,9 +32,37 @@ const ShoppingCart2 = (function () {
       totalPrice,
       totalQuantity,
     };
-  })();
+})();
   
-  ShoppingCart2.addToCart('apple', 4);
-  ShoppingCart2.addToCart('pizza', 2);
-  console.log(ShoppingCart2);
-  console.log(ShoppingCart2.shippingCost);
+ShoppingCart2.addToCart('apple', 4);
+ShoppingCart2.addToCart('pizza', 2);
+console.log(ShoppingCart2);
+console.log(ShoppingCart2.shippingCost);
+
+// importing modules allows for cleaner code and 
+// to spread things out in a more organized manner
+  
+// Need to review this
+
+import cloneDeep from 'lodash-es';
+
+const state = {
+
+cart: [
+    { product: 'bread', quantity: 5 },
+    { product: 'pizza', quantity: 5 },
+    ],
+    user: { loggedIn: true },
+};
+
+const stateClone = Object.assign({}, state);
+const stateDeepClone = cloneDeep(state);
+
+state.user.loggedIn = false;
+console.log(stateClone);
+
+console.log(stateDeepClone);
+
+if (module.hot) {
+module.hot.accept();
+}
